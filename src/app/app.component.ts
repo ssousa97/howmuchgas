@@ -1,32 +1,30 @@
-import { AfterViewChecked, AfterViewInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
 
+	map: any;
 
-	private map: any;
-
-	ngAfterViewInit() {
-
+	ngAfterViewInit(){
 		const loader = new Loader({
-			apiKey: 'AIzaSyCn7dSI36-AtAlblWo781JKR1TZxefnBkA',
+			apiKey: environment.maps_api_key,
 			version: 'weekly'
 		});
 
 		loader.load().then(() => {
-			this.map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-				center: {lat: -34.397, lng: 150.644},
+			this.map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
+				center: {lat : -34.415, lng: 151},
 				zoom: 8
 			});
-		})
-
+		});
 	}
-
 
 
 }

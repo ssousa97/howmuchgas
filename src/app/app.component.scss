@@ -1,0 +1,22 @@
+.container{
+    display: grid;    
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 10vh 90vh;
+    grid-template-areas: 
+        "topbar topbar"
+        "sidebar map";
+}
+
+.topbar{
+    background-color: red;
+    grid-area: topbar;
+}
+
+.sidebar{
+    background-color: blue;
+    grid-area: sidebar;
+}
+
+.map {
+    grid-area: map;
+}
