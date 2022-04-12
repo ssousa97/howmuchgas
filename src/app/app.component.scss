@@ -1,5 +1,8 @@
 .container{
-    display: grid;    
+    display: grid; 
+    margin: 0;
+    padding: 0;
+
     grid-template-columns: 1fr 6fr;
     grid-template-rows: 10vh 90vh;
     grid-template-areas: 
@@ -7,16 +10,14 @@
         "sidebar map";
 }
 
-.topbar{
-    background-color: red;
+topbar {
     grid-area: topbar;
 }
 
-.sidebar{
-    background-color: blue;
-    grid-area: sidebar;
+sidebar {
+    grid-area: sidebar;    
 }
 
-.map {
+maps{
     grid-area: map;
 }

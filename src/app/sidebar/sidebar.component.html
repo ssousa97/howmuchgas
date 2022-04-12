@@ -1,0 +1,25 @@
+<form class="container" [formGroup]="calculatorForm" (ngSubmit)="onSubmit()">
+    
+    <div class="input-label">
+        <label for="origin">Origin: </label>
+        <input id="origin" formControlName="origin" [ngClass]="applyErrorCss('origin')">
+    </div>
+
+    <div class="input-label">
+        <label for="destination">Destination: </label>
+        <input id="destination" formControlName="destination" [ngClass]="applyErrorCss('destination')">
+    </div>
+
+    <div class="input-label">
+        <label for="pricePerLitre">Price per Litre: </label>
+        <input id="pricePerLitre" formControlName="pricePerLitre" [ngClass]="applyErrorCss('pricePerLitre')">
+    </div>
+
+    <div class="input-label">
+        <label for="occupants">Occupants: </label>
+        <input  id="occupants" formControlName="occupants" [ngClass]="applyErrorCss('occupants')">
+    </div>
+    
+    <button class="btn-submit" type="submit" [disabled]="calculatorForm.status !== 'VALID'">Calculate</button>
+
+</form>
