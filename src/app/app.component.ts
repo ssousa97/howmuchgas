@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { MapsService } from './maps/maps.service';
 
 @Component({
 	selector: 'app-root',
@@ -7,6 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-	constructor(){}
-	
+	constructor(private mapsService: MapsService){}
+
+	ngOnInit(){
+		this.mapsService.loadMap(document.getElementById('map') as HTMLElement);		
+	}
+
 }

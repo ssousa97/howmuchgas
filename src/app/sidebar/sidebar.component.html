@@ -2,12 +2,12 @@
     
     <div class="input-label">
         <label for="origin">Origin: </label>
-        <input id="origin" formControlName="origin" [ngClass]="applyErrorCss('origin')">
+        <input id="origin" formControlName="origin" [ngClass]="applyErrorCss('origin')" #originInput>
     </div>
 
     <div class="input-label">
         <label for="destination">Destination: </label>
-        <input id="destination" formControlName="destination" [ngClass]="applyErrorCss('destination')">
+        <input id="destination" formControlName="destination" [ngClass]="applyErrorCss('destination')" #destinationInput>
     </div>
 
     <div class="input-label">

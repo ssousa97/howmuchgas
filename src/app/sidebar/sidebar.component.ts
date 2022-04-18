@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MapsService } from '../maps/maps.service';
+import { SidebarService } from './sidebar.service';
 
 @Component({
 	selector: 'sidebar',
@@ -8,11 +10,17 @@ import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/
 })
 export class SidebarComponent {
 
+	@ViewChild('originInput') originInput!: ElementRef<HTMLInputElement>;
+	@ViewChild('destinationInput') destinationInput!: ElementRef<HTMLInputElement>;
+	
 	calculatorForm!: FormGroup;
 
-	constructor(private formBuilder: FormBuilder) { }
+	constructor(
+		private formBuilder: FormBuilder,
+		private sidebarService: SidebarService
+	) { }
 
-	ngOnInit() {
+	ngOnInit(){
 
 		const realNumbersRegex = '^[1-9]*[0-9]*[.]?[0-9]*';
 		const naturalNumbersRegex = '^[1-9][0-9]*$'
@@ -22,7 +30,13 @@ export class SidebarComponent {
 			destination: [null, Validators.required],
 			pricePerLitre : [null, [Validators.required, Validators.pattern(realNumbersRegex)]], 
 			occupants : [null, [Validators.required, Validators.pattern(naturalNumbersRegex)]] 
-		})
+		});
+	}
+
+	ngAfterViewInit() {
+
+		this.sidebarService.createAutocompleteField(this.originInput.nativeElement, this.calculatorForm);
+		this.sidebarService.createAutocompleteField(this.destinationInput.nativeElement, this.calculatorForm);
 	}
 
 	applyErrorCss(field: string){
@@ -40,6 +54,11 @@ export class SidebarComponent {
 	}
 
 	onSubmit() {
+		
+		this.sidebarService.calculateRoute(
+			this.calculatorForm.get('origin')?.value,
+		 	this.calculatorForm.get('destination')?.value
+		);
 		
 		
 	}

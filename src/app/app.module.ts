@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { TopbarModule } from './topbar/topbar.module';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { MapsService } from './maps/maps.service';
-import { MapsModule } from './maps/maps.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { MapsModule } from './maps/maps.module';
     HttpClientJsonpModule,
     TopbarModule,
     SidebarModule,
-    MapsModule
   ],
   providers: [MapsService],
   bootstrap: [AppComponent]
